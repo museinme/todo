@@ -1,0 +1,63 @@
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+
+.main-title {
+  text-align: center;
+}
+
+.todo-form {
+  text-align: center;
+}
+
+.todo-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 20px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.todo-list > .item {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  width: 33%;
+  padding: 10px;
+}
+
+.todo-list > .item > .text {
+  margin-top: 20px;
+}
+
+.todo-list > .item > .number {
+  position: absolute;
+  top: 0;
+  left: 10px;
+}
+
+.todo-list > .item > .remove {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  cursor: pointer;
+  color: crimson;
+}
+
+
+
+
+
