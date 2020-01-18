@@ -1,18 +1,17 @@
-import * as React from 'react';
-import './App.css';
-import {IListProps} from "./index";
+import React from 'react';
+import {ToDoItem, IToDoListProps} from './typings/typings';
 
-export const ToDoList = ({items, handleRemoveClick}: IListProps) => {
+export const ToDoList = ({items, handleRemoveClick}: IToDoListProps) => {
 
   return (
-      <ul className={'todo-list'}>
-        {items.map((item: Object, index: number) => (
+      <ul className="todo-list">
+        {items.map((item: ToDoItem, index: number) => (
             <li
-                className={'item'}
-                key={index}
+                className="item"
+                key={item.id}
             >
               <span className="number">To-Do Number: {index + 1}</span>
-              <div className="text">{'item.text'}</div>
+              <div className="text">{item.text}</div>
               <span
                   className="remove"
                   onClick={(e) => handleRemoveClick(e, item)}

@@ -1,23 +1,8 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import ToDoApp from './ToDoApp';
 
-import './index.css';
-
-export type ToDoItem = {
-    text: string,
-    id: number,
-}
-
-export interface IListProps {
-    items: ToDoItem[],
-    handleRemoveClick: (e: React.MouseEvent<HTMLSpanElement>, item: number) => void,
-}
-
-export interface IAppState {
-    items: ToDoItem[],
-    inputValue: string;
-}
+import './styles/app.css';
 
 ReactDOM.render(<ToDoApp/>, document.getElementById('todo-list') as HTMLElement);
 
