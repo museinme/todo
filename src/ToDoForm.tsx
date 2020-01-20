@@ -1,17 +1,18 @@
+// @ts-nocheck
 import React from 'react';
 import ToDoList from './ToDoList';
-import {IToDoAppState, ToDoItem} from './typings/typings';
+import {IToDoAppState, ToDoItem} from './model';
+import store from './store'
+import { observer } from 'mobx-react';
 
-export class ToDoApp extends React.Component<any, IToDoAppState> {
-
-  state: IToDoAppState = {items: [], inputValue: ''};
+export class ToDoForm extends React.Component<any, IToDoAppState> {
 
   handleInputChange (e: React.ChangeEvent<HTMLInputElement>): void {
-    this.setState({ inputValue: e.target.value });
+    store.inputValue = e.target.value;
   };
 
   handleAddClick(e: React.MouseEvent<HTMLButtonElement>): void {
-    const {items, inputValue} = this.state;
+    const {items, inputValue} = store;
 
     if (!inputValue.length) {
       return;
@@ -24,20 +25,18 @@ export class ToDoApp extends React.Component<any, IToDoAppState> {
       id: Math.random()
     };
 
-    this.setState({
-      items: items.concat(toDoItem),
-      inputValue: ''
-    });
+    store.items =  items.concat(toDoItem);
+    store.inputValue = '';
+    console.log(store);
   }
 
   handleRemoveClick(e: React.MouseEvent<HTMLSpanElement>, item: ToDoItem): void {
-    this.setState(({items}) => ({
-      items: items.filter(filterItem => filterItem.id !== item.id)
-    }));
+    const {items} = store;
+    store.items = items.filter(filterItem => filterItem.id !== item.id);
   }
 
   render() {
-    const {items, inputValue} = this.state;
+    const {items, inputValue} = store;
 
     return (
         <>
@@ -52,7 +51,6 @@ export class ToDoApp extends React.Component<any, IToDoAppState> {
             <br/>
             <br/>
             <input
-                value={inputValue}
                 type="textarea"
                 id="to-do-input"
                 onChange={(e) => {this.handleInputChange(e);}}
@@ -72,4 +70,4 @@ export class ToDoApp extends React.Component<any, IToDoAppState> {
   }
 };
 
-export default ToDoApp;
+export default observer(ToDoForm);
