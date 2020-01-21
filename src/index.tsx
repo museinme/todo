@@ -9,7 +9,7 @@ ReactDOM.render((
     <BrowserRouter>
         <App/>
     </BrowserRouter>
-) , document.getElementById('todo-list') as HTMLElement);
+) , document.getElementById('todo-app') as HTMLElement);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

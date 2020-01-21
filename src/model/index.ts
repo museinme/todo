@@ -4,11 +4,11 @@ export type ToDoItem = {
 }
 
 export interface IToDoListProps {
-    items: ToDoItem[],
+    items: Array<ToDoItem>,
     handleRemoveClick: (e: React.MouseEvent<HTMLSpanElement>, item: ToDoItem) => void,
 }
 
 export interface IToDoAppState {
-    items: ToDoItem[],
+    items: Array<ToDoItem>,
     inputValue: string;
 }

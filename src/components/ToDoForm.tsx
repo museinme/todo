@@ -1,11 +1,10 @@
-// @ts-nocheck
 import React from 'react';
-import ToDoList from './ToDoList';
-import {IToDoAppState, ToDoItem} from './model';
-import store from './store'
+import {ToDoItem} from '../model';
+import store from '../store'
 import { observer } from 'mobx-react';
+import {Link} from "react-router-dom";
 
-export class ToDoForm extends React.Component<any, IToDoAppState> {
+export class ToDoForm extends React.Component<any, any> {
 
   handleInputChange (e: React.ChangeEvent<HTMLInputElement>): void {
     store.inputValue = e.target.value;
@@ -14,25 +13,19 @@ export class ToDoForm extends React.Component<any, IToDoAppState> {
   handleAddClick(e: React.MouseEvent<HTMLButtonElement>): void {
     const {items, inputValue} = store;
 
+    e.preventDefault();
+
     if (!inputValue.length) {
       return;
     }
 
-    e.preventDefault();
-
-    const toDoItem = {
+    const item: ToDoItem = {
       text: inputValue,
       id: Math.random()
     };
 
-    store.items =  items.concat(toDoItem);
+    store.items =  store.items.concat(item);
     store.inputValue = '';
-    console.log(store);
-  }
-
-  handleRemoveClick(e: React.MouseEvent<HTMLSpanElement>, item: ToDoItem): void {
-    const {items} = store;
-    store.items = items.filter(filterItem => filterItem.id !== item.id);
   }
 
   render() {
@@ -46,13 +39,12 @@ export class ToDoForm extends React.Component<any, IToDoAppState> {
               className={'todo-form'}
           >
             <label htmlFor="todo-input">
-              Добавьте свою тудушку
+              Add your new to-do
             </label>
             <br/>
             <br/>
             <input
-                type="textarea"
-                id="to-do-input"
+                value={inputValue}
                 onChange={(e) => {this.handleInputChange(e);}}
             />
             <button
@@ -61,10 +53,9 @@ export class ToDoForm extends React.Component<any, IToDoAppState> {
               Add
             </button>
           </form>
-          <ToDoList
-              items={items}
-              handleRemoveClick={(e, item) => this.handleRemoveClick(e, item)}
-          />
+          <div className="message">
+            {`${items.length ? 'Check out your ' + items.length : ''} `}{items.length > 0 && <Link to='/list'>to-do's</Link>}
+          </div>
         </>
     );
   }

@@ -13,6 +13,26 @@ code {
   monospace;
 }
 
+.menu {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.menu > .list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu > .list > .item {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.page {
+  text-align: center;
+}
 
 .main-title {
   text-align: center;
@@ -20,6 +40,10 @@ code {
 
 .todo-form {
   text-align: center;
+}
+
+.form-page .message {
+  margin-top: 20px;
 }
 
 .todo-list {
@@ -41,6 +65,7 @@ code {
 
 .todo-list > .item > .text {
   margin-top: 20px;
+  text-align: left;
 }
 
 .todo-list > .item > .number {
