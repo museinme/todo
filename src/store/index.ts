@@ -11,4 +11,4 @@ decorate(Store, {
     inputValue: observable
 })
 
-export default new Store;
+export default new Store();

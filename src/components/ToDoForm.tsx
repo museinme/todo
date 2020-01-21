@@ -11,7 +11,7 @@ export class ToDoForm extends React.Component<any, any> {
   };
 
   handleAddClick(e: React.MouseEvent<HTMLButtonElement>): void {
-    const {items, inputValue} = store;
+    const {inputValue} = store;
 
     e.preventDefault();
 
