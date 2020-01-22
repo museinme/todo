@@ -8,7 +8,7 @@ export class ToDoListPage extends React.Component<any, any> {
     handleRemoveClick(e: React.MouseEvent<HTMLSpanElement>, item: ToDoItem): void {
         const {items} = store;
 
-        store.items = items.filter((filterItem: ToDoItem) => filterItem.id !== item.id);
+        store.removeItem(items, item);
     }
 
     render() {

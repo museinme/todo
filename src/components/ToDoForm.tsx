@@ -5,13 +5,12 @@ import { observer } from 'mobx-react';
 import {Link} from "react-router-dom";
 
 export class ToDoForm extends React.Component<any, any> {
-
   handleInputChange (e: React.ChangeEvent<HTMLInputElement>): void {
-    store.inputValue = e.target.value;
+    store.setInputValue(e.target.value);
   };
 
   handleAddClick(e: React.MouseEvent<HTMLButtonElement>): void {
-    const {inputValue} = store;
+    const {items, inputValue} = store;
 
     e.preventDefault();
 
@@ -19,13 +18,13 @@ export class ToDoForm extends React.Component<any, any> {
       return;
     }
 
-    const item: ToDoItem = {
+    const NewItem: ToDoItem = {
       text: inputValue,
       id: Math.random()
     };
 
-    store.items =  store.items.concat(item);
-    store.inputValue = '';
+    store.addItem(items, NewItem);
+    store.resetInputValue();
   }
 
   render() {
