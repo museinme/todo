@@ -1,63 +1,64 @@
 import React from 'react';
 import {ToDoItem} from '../model';
 import store from '../store'
-import { observer } from 'mobx-react';
-import {Link} from "react-router-dom";
+import {observer} from 'mobx-react';
+import {Link} from 'react-router-dom';
 
-export class ToDoForm extends React.Component<any, any> {
-  handleInputChange (e: React.ChangeEvent<HTMLInputElement>): void {
+function handleInputChange(e: React.ChangeEvent<HTMLInputElement>): void {
     store.setInputValue(e.target.value);
-  };
+};
 
-  handleAddClick(e: React.MouseEvent<HTMLButtonElement>): void {
+function handleAddClick(e: React.MouseEvent<HTMLButtonElement>): void {
     const {items, inputValue} = store;
 
     e.preventDefault();
 
     if (!inputValue.length) {
-      return;
+        return;
     }
 
     const NewItem: ToDoItem = {
-      text: inputValue,
-      id: Math.random()
+        text: inputValue,
+        id: Math.random()
     };
 
     store.addItem(items, NewItem);
     store.resetInputValue();
-  }
+}
 
-  render() {
-    const {items, inputValue} = store;
+export const ToDoForm = observer (() => {
+      const {items, inputValue} = store;
 
-    return (
-        <>
-          <h1 className={'main-title'}>to-do list</h1>
-          <form
-              id="to-do-form"
-              className={'todo-form'}
-          >
-            <label htmlFor="todo-input">
-              Add your new to-do
-            </label>
-            <br/>
-            <br/>
-            <input
-                value={inputValue}
-                onChange={(e) => {this.handleInputChange(e);}}
-            />
-            <button
-                onClick={(e) => {this.handleAddClick(e)}}
+      return (
+          <>
+            <h1 className={'main-title'}>to-do list</h1>
+            <form
+                id="to-do-form"
+                className={'todo-form'}
             >
-              Add
-            </button>
-          </form>
-          <div className="message">
-            {`${items.length ? 'Check out your ' + items.length : ''} `}{items.length > 0 && <Link to='/list'>to-do's</Link>}
-          </div>
-        </>
-    );
-  }
-};
-
-export default observer(ToDoForm);
+              <label htmlFor="todo-input">
+                Add your new to-do
+              </label>
+              <br/>
+              <br/>
+              <input
+                  value={inputValue}
+                  onChange={(e) => {
+                    handleInputChange(e);
+                  }}
+              />
+              <button
+                  onClick={(e) => {
+                    handleAddClick(e)
+                  }}
+              >
+                Add
+              </button>
+            </form>
+            <div className="message">
+              {`${items.length ? 'Check out your ' + items.length : ''} `}{items.length > 0 &&
+            <Link to='/list'>to-do's</Link>}
+            </div>
+          </>
+      )
+});

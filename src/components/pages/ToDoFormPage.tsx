@@ -1,12 +1,11 @@
 import React from 'react';
-import {ToDoForm} from "../ToDoForm";
+import { ToDoForm }  from "../ToDoForm";
 
-export const ToDoFormPage = () => {
-    return (
+export const ToDoFormPage = () =>
+    (
         <div className="form-page page">
             <ToDoForm/>
         </div>
     );
-};
 
 export default ToDoFormPage;

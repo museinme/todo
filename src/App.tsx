@@ -4,7 +4,7 @@ import {Switch, Route, Link} from "react-router-dom";
 import { observer } from 'mobx-react';
 import ToDoHomePage from './components/pages/ToDoHomePage';
 import ToDoFormPage from './components/pages/ToDoFormPage';
-import ToDoListPage from './components/pages/ToDoListPage';
+import { ToDoListPage } from './components/pages/ToDoListPage';
 
 export class App extends React.Component<any, any> {
 
